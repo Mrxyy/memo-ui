@@ -1,0 +1,10 @@
+# npm
+#https://git-scm.com/docs/gitignore
+node_modules
+**/index.scss
+index.scss
+**/darkmark.css
+darkmark.css
+**/*.ts
+**/*.js
+# **/mk\?*  动态无法被ignore
