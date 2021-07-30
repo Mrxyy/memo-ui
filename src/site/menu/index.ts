@@ -1,4 +1,4 @@
-import { forEachTransformMKDOCPathControler } from "../utils/viteGlobalImport";
+import { forEachTransformMKDOCPathControler } from "../../utils/viteGlobalImport";
 import { RouteRecordRaw } from "vue-router";
 
 interface LeftListMenuParams{
@@ -25,8 +25,8 @@ export class LeftListMenu {
 }
 
 export function menu(menuData:LeftListMenu[] = []):void {
-  const createMenu = (path) => {
-    path && menuData.push(new LeftListMenu({ name: path, route: `/${path}` }));
+  const createMenu = (transformName?:string):any => {
+    transformName && menuData.push(new LeftListMenu({ name: transformName, route: `/${transformName}` }));
   };
   createMenu.doneCallBack = () => {
     console.log("组件菜单加载完成✅");

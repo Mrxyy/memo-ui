@@ -7,4 +7,6 @@ declare module "*.vue" {
 
 declare module "*.md"
 
+declare module "@kangc*"
+declare module "codemirror"
 declare module "vue-codemirror?*"

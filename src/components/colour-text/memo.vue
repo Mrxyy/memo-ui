@@ -17,17 +17,13 @@
 // import { withDefaults, defineProps } from "vue";
 // https://github.com/vuejs/rfcs/pull/227
 import colors from "tailwindcss/colors";
-import { onMounted } from "vue";
 
 interface Props{
-  text: string
-  bg: string
-  color:string
-  shadow:string
+  text?: string
+  bg?: string
+  color?:string
+  shadow?:string
 }
-// fetch("/ms", (reps) => {
-//   console.log(reps);
-// });
 withDefaults(defineProps<Props>(), {
   text: "memo",
   bg: colors.emerald[500],
@@ -35,7 +31,6 @@ withDefaults(defineProps<Props>(), {
   shadow: colors.orange[200]
 });
 
-onMounted(function() { console.log("memo"); });
 </script>
 
 <style lang="scss" scoped>

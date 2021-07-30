@@ -4,6 +4,7 @@ specifiers:
   '@kangc/v-md-editor': ^2.3.6
   '@rollup/plugin-eslint': ^8.0.1
   '@types/node': ^16.3.1
+  '@types/tailwindcss': ^2.2.1
   '@typescript-eslint/eslint-plugin': ^4.28.3
   '@typescript-eslint/parser': ^4.28.3
   '@vitejs/plugin-vue': ^1.2.5
@@ -58,6 +59,7 @@ dependencies:
 devDependencies:
   '@rollup/plugin-eslint': 8.0.1
   '@types/node': 16.3.2
+  '@types/tailwindcss': 2.2.1
   '@typescript-eslint/eslint-plugin': 4.28.3_8da3816a7c3fb8ebc9f4c4b3e4b2e38f
   '@typescript-eslint/parser': 4.28.3_eslint@7.30.0+typescript@4.3.5
   '@vitejs/plugin-vue': 1.2.5_@vue+compiler-sfc@3.1.5
@@ -585,6 +587,10 @@ packages:
 
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
+    dev: true
+
+  /@types/tailwindcss/2.2.1:
+    resolution: {integrity: sha512-raLwtQF+uul9lsvs7+GUizeNrpxRqbnckIu/va5hzPPwZsImZunkyLFAS/1rwEHhhvFMNiMJmTiP5PPGa0oNJA==}
     dev: true
 
   /@types/unist/2.0.6:

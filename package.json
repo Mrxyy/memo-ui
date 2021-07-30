@@ -1,8 +1,9 @@
 {
   "version": "0.0.0",
+  "name": "memo-ui",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
     "serve": "vite preview",
     "noEmit": "vue-tsc --noEmit",
     "lint:js": "eslint --ext \".js,.ts\" --ignore-path .gitignore . --fix",
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@rollup/plugin-eslint": "^8.0.1",
     "@types/node": "^16.3.1",
+    "@types/tailwindcss": "^2.2.1",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",
     "@vitejs/plugin-vue": "^1.2.5",

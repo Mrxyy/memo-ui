@@ -11,13 +11,12 @@
     left-toolbar="undo redo clear save"
     right-toolbar="edit  sync-scroll fullscreen"
     :toolbar="toolbar"
-    @change="change"
     @save="save"
   />
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, defineAsyncComponent } from "vue";
+import { defineComponent, ref, defineAsyncComponent, markRaw } from "vue";
 
 interface DataDefind {
   mk:any,
@@ -61,14 +60,12 @@ export default defineComponent({
 import colors from "tailwindcss/colors";
 
 interface Props{
-  text: string
-  bg: string
-  color:string
-  shadow:string
+  text?: string
+  bg?: string
+  color?:string
+  shadow?:string
 }
-// fetch("/ms", (reps) => {
-//   console.log(reps);
-// });
+
 withDefaults(defineProps<Props>(), {
   text: "memo",
   bg: colors.emerald[500],
@@ -260,9 +257,9 @@ withDefaults(defineProps<Props>(), {
       // @param nocursor
       this.codemirror.setOption("readOnly", !flag);
     },
-    async requestRender(vueFile:string):any {
+    async requestRender(vueFile?:string):Promise<any> {
       // console.log(await import("../colour-text/mk"));
-      this.mk = defineAsyncComponent(() => import(/* @vite-ignore */`../colour-text/mk=${encodeURI(this.text)}`));
+      this.mk = markRaw(defineAsyncComponent(() => import(/* @vite-ignore */`../colour-text/mk=${encodeURI(this.text)}`)));
     },
     save(text:string) {
       this.requestRender();

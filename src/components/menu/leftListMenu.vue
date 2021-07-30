@@ -39,23 +39,15 @@
 </template>
 
 <script lang="ts">
-import { inject, onBeforeMount, onMounted, provide, ref, watch, nextTick } from "vue";
-
+import { inject, provide, ref, watch } from "vue";
 // https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md#declaring-additional-options
 // ? 必须写在setup之前
 export default {
   name: "LeftListMenu",
   watch: {
-    currentActive(n) {
-      console.log(this);
+    currentActive(n:menuItem) {
       this.$router && this.$router.push(n.route);
     }
-  },
-  mounted() {
-    console.log("mounted", this.value);
-  },
-  renderTriggered(DebuggerEvent) {
-    console.log("DebuggerEvent", DebuggerEvent);
   },
   methods: {
     switchExpand(v:menuItem) {
@@ -70,22 +62,17 @@ export default {
 </script>
 
 <script setup lang="ts">
-
-declare type RouteRecordRaw = any
-
 interface menuItem{
   name:string,
   children?:menuItem[],
   id?:string,
   expand?:boolean,
-  route?:string | RouteRecordRaw
+  route?:any|string
 }
-
 interface Props{
   value: menuItem[],
   activeItem:number[] | menuItem
 }
-
 const props = withDefaults(defineProps<Props>(), {
   value () {
     return [{
@@ -133,7 +120,7 @@ const initActive = getCurrentActive();
 
 //! 用于menu 异步添加数据，重新设置初始激活
 watch(data.value, () => {
-  console.log(props.value.length);
+  console.log(currentActive.value);
   if (Array.isArray(currentActive.value)) {
     currentActive.value = getCurrentActive();
   }

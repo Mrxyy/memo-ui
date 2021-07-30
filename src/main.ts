@@ -4,7 +4,7 @@ import VMdEditor from "@kangc/v-md-editor/lib/codemirror-editor";
 
 import App from "./App.vue";
 import router from "./site/router";
-import { startorTransformPath } from "./site/utils/viteGlobalImport";
+import { startorTransformPath } from "./utils/viteGlobalImport";
 
 import "./styles/index.scss";
 

@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, ref } from "vue";
+import { ref } from "vue";
 import { menu } from "./site/menu/index";
 import TSLR from "./components/laout/T-SL-R.vue";
 import leftMenu from "./components/menu/leftListMenu.vue";
