@@ -7,7 +7,9 @@
     "serve": "vite preview",
     "noEmit": "vue-tsc --noEmit",
     "lint:js": "eslint --ext \".js,.ts\" --ignore-path .gitignore . --fix",
-    "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore --fix"
+    "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore --fix",
+    "prepare": "husky install",
+    "commitlint": "npx --no-install commitlint --edit $1"
   },
   "dependencies": {
     "@kangc/v-md-editor": "^2.3.6",
@@ -16,6 +18,7 @@
     "codemirror": "^5.62.0",
     "dedent": "^0.7.0",
     "highlight.js": "^11.1.0",
+    "lint-staged": "^11.1.1",
     "postcss-scss": "^4.0.0",
     "quill": "^1.3.7",
     "vue": "^3.0.5",
@@ -24,6 +27,8 @@
   },
   "types": "main.ts",
   "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
     "@rollup/plugin-eslint": "^8.0.1",
     "@types/node": "^16.3.1",
     "@types/tailwindcss": "^2.2.1",
@@ -42,6 +47,7 @@
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-typescript": "^0.14.0",
     "eslint-plugin-vue": "^7.13.0",
+    "husky": "^7.0.1",
     "sass": "^1.35.2",
     "serve-static": "^1.14.1",
     "stylelint": "^13.13.1",
@@ -54,5 +60,10 @@
     "vite": "^2.4.2",
     "vite-plugin-md": "^0.8.0",
     "vue-tsc": "^0.0.24"
+  },
+  "lint-staged": {
+    "*.js": "npm run lint:js",
+    "*.s?css": "npm run lint:style",
+    "*.vue": "npm run lint:js & npm run lint:style"
   }
 }
