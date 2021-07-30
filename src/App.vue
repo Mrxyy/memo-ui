@@ -43,7 +43,6 @@ const menuData = ref([{
   name: "组件",
   children: []
 }]);
-console.log(menuData.value[0].children);
 
 menu(menuData.value[0].children);
 </script>
