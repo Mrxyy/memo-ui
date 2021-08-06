@@ -120,7 +120,6 @@ const initActive = getCurrentActive();
 
 //! 用于menu 异步添加数据，重新设置初始激活
 watch(data.value, () => {
-  console.log(currentActive.value);
   if (Array.isArray(currentActive.value)) {
     currentActive.value = getCurrentActive();
   }

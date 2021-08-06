@@ -62,8 +62,7 @@
     "vue-tsc": "^0.0.24"
   },
   "lint-staged": {
-    "*.js": "npm run lint:js",
     "*.s?css": "npm run lint:style",
-    "*.vue": "npm run lint:js & npm run lint:style"
+    "*.vue": "npm run lint:style"
   }
 }
