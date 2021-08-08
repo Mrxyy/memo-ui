@@ -15,7 +15,12 @@ import moSelect from "../components/form/select.vue";
 import moButton from "../components/buttons/index.vue"
 import moRadios from "../components/form/radios.vue"
 import moCheckbox from "../components/form/checkbox.vue"
+import moSwitch from "../components/form/switch.vue"
 const al = ()=>alert("memo")
+const switchData = {
+  disable:{value:"关闭",label:"关闭"},
+  enable:{value:"开启",label:"开启"}
+}
 </script>
 
 ## 默认显示
@@ -38,12 +43,14 @@ const al = ()=>alert("memo")
     <moControl id="setp-3" label="last name">
       <moSelect width="20%" id="setp-3"></moSelect>
     </moControl>
-    <moControl id="setp-4" label="数学">
-      <moRadios class="mr-3" width="20%" id="setp-4"></moRadios>
-    </moControl>
-       <moControl id="setp-4" label="英语">
-      <moRadios width="20%"></moRadios>
-    </moControl>
+    <div>
+      <moControl selfInline id="setp-4" label="数学">
+        <moRadios class="mr-3" name="subject" width="20%" id="setp-4"></moRadios>
+      </moControl>
+      <moControl selfInline id="setp-4-1" label="英语">
+        <moRadios width="20%"  name="subject"  id="setp-4-1"></moRadios>
+      </moControl>
+    </div>
     <div class="flex">
       <moControl id="setp-5" label="item-1">
         <moCheckbox class="mr-5" id="setp-5"></moCheckbox>
@@ -52,6 +59,9 @@ const al = ()=>alert("memo")
         <moCheckbox class="mr-5" id="setp-6"></moCheckbox>
       </moControl>
     </div>
+      <moControl id="setp-6" label="item-2">
+        <moSwitch :data="switchData" defaultStatus="disable" class="mr-5" id="setp-6"></moSwitch>
+      </moControl>
   </mo-form>
 </div>
 

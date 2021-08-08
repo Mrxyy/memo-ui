@@ -1,5 +1,5 @@
 <template>
-  <div :class="`mo-form-control ${modeOptions} w-full mb-3`">
+  <div :class="`mo-form-control ${modeOptions}  mb-3`">
     <label
       :for="id"
       class="mr-2"
@@ -35,25 +35,27 @@ interface Props{
   label:string
   verify?:string
   help?:string
+  selfInline?:false
 }
 const props = withDefaults(defineProps<Props>(), {
   verify: "",
   help: "",
-  mode: ModeType.INLINE
+  mode: ModeType.INLINE,
+  selfInline: false
 });
-const { mode } = props;
+const { mode, selfInline } = props;
 
 const modeOptions = computed(() => {
   let classStr = "";
   switch (mode) {
     case ModeType.BLOCK:
-      classStr += `block leading-normal`;
+      classStr += `${selfInline ? "w-auto inline-" : "w-full "}block leading-normal`;
       break;
     case ModeType.INSIDE:
       classStr += ``;
       break;
     default:
-      classStr += `flex items-center`;
+      classStr += `${selfInline ? "w-auto inline-" : "w-full "}flex items-center`;
       break;
   }
   return classStr;
@@ -65,7 +67,7 @@ const modeOptions = computed(() => {
 
   >label {
 
-    @apply leading-normal text-xl mb-1 ml-1 ;
+    @apply leading-normal text-xl mb-1 ;
 
     display: block;
   }

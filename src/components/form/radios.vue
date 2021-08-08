@@ -1,17 +1,31 @@
 <template>
   <div
-    :class="`mo-radio relative` "
+    :class="`mo-radio relative ${$attrs.class}` "
   >
     <moInput
-      name="a"
+      :="excludeAttr($attrs,['class','width'])"
       type="radio"
       class="appearance-none"
     />
   </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
 import moInput from "./input.vue";
+export default {
+  inheritAttrs: false
+};
+</script>
+<script lang="ts" setup>
+const excludeAttr = (attrs:any, keyArr?:string[]) => {
+  const excludeAttr = Object.assign({}, attrs);
+  keyArr && keyArr.forEach((v:string) => {
+    if (v in excludeAttr) {
+      delete excludeAttr[v];
+    }
+  });
+  return excludeAttr;
+};
 </script>
 
 <style lang="scss" scoped>

@@ -13,6 +13,9 @@
 
 <script lang="ts">
 import moInput from "./input.vue";
+export default {
+  inheritAttrs: false
+};
 </script>
 
 <script lang="ts" setup>
