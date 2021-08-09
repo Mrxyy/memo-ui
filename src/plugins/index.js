@@ -166,7 +166,7 @@ function VitePluginMarkdown(userOptions = {}) {
     resolveId(source, importe, option) {
       if (/mk=.*/.test(source)) {
         console.count("🐑：");
-        virtualFileId = source.replace(/(.*mk=)|(\?.*)/g, "");
+        virtualFileId = source.replace(/(.*mk=)|(\?.*)/g, "").replaceAll("!--@", "#");
         return `${source.replace(/(mk=(.|\s)*)/g, "/mk")}?mk-edit`;
       }
       return null;
@@ -174,14 +174,19 @@ function VitePluginMarkdown(userOptions = {}) {
     load(id) {
       if (id.endsWith("?mk-edit")) {
         console.count("🐻：");
-        // console.log(id, virtualFileId);
         return { code: virtualFileId };
       }
     },
     transform(raw, id) {
+      if (id.endsWith("?mk-edit")) {
+        console.count("🐻：");
+        // console.log(id, raw);
+      }
       if (id.endsWith(".md")) {
         try {
           a = markdownToVue(id, raw);
+          console.count("🐑：");
+          // console.log(a);
           return markdownToVue(id, raw);
         } catch (e) {
           this.error(e);

@@ -45,7 +45,6 @@
   table,
   pre {
     margin: var(--line-space);
-    margin-top: 0;
     margin-bottom: 16px;
   }
 
@@ -323,6 +322,7 @@ strong {
     table {
       border-collapse: collapse;
       border-spacing: 0;
+      margin-top: 20px;
     }
 
     td,

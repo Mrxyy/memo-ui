@@ -17,6 +17,7 @@
 // import { withDefaults, defineProps } from "vue";
 // https://github.com/vuejs/rfcs/pull/227
 import colors from "tailwindcss/colors";
+import moBadge from "../badge/index.vue";
 
 interface Props{
   text?: string

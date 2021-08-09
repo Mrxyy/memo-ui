@@ -41,6 +41,8 @@ import "codemirror/addon/scroll/simplescrollbars.css";
 // style
 import "codemirror/lib/codemirror.css";
 
+import codeEditor from "./components/code-editor/index.vue";
+
 VMdEditor.Codemirror = Codemirror;
 VMdEditor.use(githubTheme, {
   Hljs: hljs
@@ -51,5 +53,6 @@ app.use(createHead());
 app.use(VMdEditor);
 app.use(router);
 app.mount("#app");
+app.component("CodeEditor", codeEditor);
 startorTransformPath();
 console.log("done");

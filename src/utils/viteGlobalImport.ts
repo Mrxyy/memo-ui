@@ -7,8 +7,13 @@ export function firstLetterToUppper(name:string) {
   return name.replace(/^./, name.charAt(0).toLocaleUpperCase());
 }
 
-export function resolveNameFromPath(path:string):string | undefined {
+export function resolveNameFromPath(path:string, publicPath?:string):string | undefined {
+  if (publicPath) {
+    return path.replace(publicPath, "").replace(/\..*/, "");
+  }
   const name = path.match(/\/(\w|\d|-|_)+\./)?.[0].slice(1, -1);
+  console.log(name);
+
   if (name === "index") {
     return resolveNameFromPath(path && path.replace(/\/index/, ""));
   }
@@ -21,7 +26,7 @@ interface parameTypeProp{
 declare type parameType = parameTypeFx & parameTypeProp
 
 declare type pathObject = {[path:string]:any}
-export function forEachTransformPath(pathObject:pathObject) {
+export function forEachTransformPath(pathObject:pathObject, publicPath?:string) {
   const needExecufx:parameType[] = [];
   return {
     addDepend(fx:parameType):void {
@@ -29,7 +34,7 @@ export function forEachTransformPath(pathObject:pathObject) {
     },
     start() {
       for (const k in pathObject) {
-        const transformName = resolveNameFromPath(k);
+        const transformName = resolveNameFromPath(k, publicPath);
         needExecufx.forEach((v:parameType) => {
           v(transformName, pathObject[k], k);
         });
@@ -41,7 +46,7 @@ export function forEachTransformPath(pathObject:pathObject) {
   };
 }
 
-export const forEachTransformMKDOCPathControler = forEachTransformPath(import.meta.glob("../doc/*.md"));
+export const forEachTransformMKDOCPathControler = forEachTransformPath(import.meta.glob("../doc/**/*.md"), "../doc/template/");
 export function startorTransformPath():void {
   forEachTransformMKDOCPathControler.start();
 }

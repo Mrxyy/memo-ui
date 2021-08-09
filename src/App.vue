@@ -25,7 +25,7 @@
 <script lang="ts">
 import { ref } from "vue";
 import { menu } from "./site/menu/index";
-import TSLR from "./components/laout/T-SL-R.vue";
+import TSLR from "./components/layout/T-SL-R.vue";
 import leftMenu from "./components/menu/leftListMenu.vue";
 import memo from "./components/colour-text/memo.vue";
 export default {
@@ -43,7 +43,6 @@ const menuData = ref([{
   name: "组件",
   children: []
 }]);
-
 menu(menuData.value[0].children);
 </script>
 <style lang="scss" scoped>

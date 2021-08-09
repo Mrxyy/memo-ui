@@ -17,7 +17,6 @@
 
 <script lang="ts">
 import { defineComponent, ref, defineAsyncComponent, markRaw } from "vue";
-
 interface DataDefind {
   mk:any,
   codemirror:any,
@@ -223,6 +222,10 @@ withDefaults(defineProps<Props>(), {
 }
 </style>
 `
+    },
+    filePath: {
+      type: String,
+      default: "../colour-text"
     }
   },
   data():DataDefind {
@@ -259,7 +262,7 @@ withDefaults(defineProps<Props>(), {
     },
     async requestRender(vueFile?:string):Promise<any> {
       // console.log(await import("../colour-text/mk"));
-      this.mk = markRaw(defineAsyncComponent(() => import(/* @vite-ignore */`../colour-text/mk=${encodeURI(this.text)}`)));
+      this.mk = markRaw(defineAsyncComponent(() => import(/* @vite-ignore */`${this.filePath}/mk=${encodeURI(this.text).replaceAll("#", "!--@")}`)));
     },
     save(text:string) {
       this.requestRender();

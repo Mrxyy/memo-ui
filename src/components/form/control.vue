@@ -7,9 +7,9 @@
     <slot />
     <div
       v-if="help || verify"
-      class="help-or-verify-text"
+      :class="`help-or-verify-text whitespace-nowrap ml-2 ${help ? 'text-info' : ''}`"
     >
-      {{ verify | help }}
+      {{ verify || help }}
     </div>
   </div>
 </template>

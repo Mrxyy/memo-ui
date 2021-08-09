@@ -8,18 +8,18 @@ meta:
 > 彩色字体是memo的logo衍生出组件。
 
 <script setup lang="ts">
-import colourText from "../components/colour-text/memo.vue";
+import {demo1,demo2,demo3,path} from "./index.ts"
 </script>
 
 ## 默认显示
-<div class="demo"><colour-text  /></div>
-
+<CodeEditor :filePath="path" :value="demo1"/>
 
 ## 自定义文字
-<div class="demo"><colour-text text="自定义文字" /></div>
+<CodeEditor :filePath="path" :value="demo2"/>
 
 ## 自定义颜色
-<div class="demo"><colour-text text="自定义文字" bg="#000" color="#fff" shadow="red"/></div>
+<CodeEditor :filePath="path" :value="demo3"/>
+
 
 ## props:
 

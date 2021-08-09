@@ -20,6 +20,12 @@ export default defineConfig({
       exclude: ["**/node_modules", "**/*.scss", "**/*.css", "**/*.png", "**/*.svg", "**/*.jpg"]
     })
   ],
+  resolve: {
+    alias: {
+      // 解决方案,vite 虚拟文件不能解析相对路径
+      "@components": "/src/components"
+    }
+  },
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
