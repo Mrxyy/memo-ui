@@ -1,5 +1,5 @@
 <template>
-  <div class="codeCompileBox box-content border-solid rounded-sm border-2 border-primary p-2 mx-2 mb-4">
+  <div class="code-compile-box box-content border-solid rounded-sm border-2 border-primary p-2 mx-2 mb-4">
     <component
       :is="mk"
     />

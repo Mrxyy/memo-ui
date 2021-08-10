@@ -22,7 +22,7 @@ import {demo1,demo2,demo3,path} from "./index.ts"
 ### label指定label文本
 <CodeEditor :filePath="path" :value="demo2"/>
 
-### 配合表单验证
+### 配合表单提示和验证
 <CodeEditor :filePath="path" :value="demo3"/>
 
 ## input

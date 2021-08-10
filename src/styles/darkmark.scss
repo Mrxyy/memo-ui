@@ -15,6 +15,12 @@
 
 .markdown-body > {
 
+  .code-compile-box,
+  .v-md-editor {
+    width: auto;
+    margin: 20px;
+  }
+
   blockquote {
     padding: 0 1em;
     margin: 0;

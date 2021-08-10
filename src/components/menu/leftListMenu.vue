@@ -46,7 +46,7 @@ export default {
   name: "LeftListMenu",
   watch: {
     currentActive(n:menuItem) {
-      this.$router && this.$router.push(n.route);
+      n.route && this.$router && this.$router.push(n.route);
     }
   },
   methods: {
@@ -75,32 +75,7 @@ interface Props{
 }
 const props = withDefaults(defineProps<Props>(), {
   value () {
-    return [{
-      id: "memo-0",
-      name: "memo",
-      expand: true,
-      children: [{
-        id: "memo-0-1",
-        name: "memo-0-1",
-        children: [{
-          id: "memo-0-1-1",
-          name: "memo-0-1-1"
-        }]
-      }]
-    }, {
-      name: "memo-1",
-      children: [{
-        name: "memo-1-0"
-      }]
-    }, {
-      name: "memo-2",
-      children: [{
-        id: "memo-2-2",
-        name: "memo-2-2"
-      }]
-    }, {
-      name: "memo-3"
-    }];
+    return [];
   }
 });
 const data = ref(props.value);
