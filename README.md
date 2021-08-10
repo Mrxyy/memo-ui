@@ -15,5 +15,6 @@
 + collapse组件
 
 ## reference
-[NPM](https://www.npmjs.com/package/memo-ui)
-[github](https://www.npmjs.com/package/memo-ui)
+
++ NPM: [NPM](https://www.npmjs.com/package/memo-ui)
++ github: [github](https://github.com/Mrxyy/memo-ui)
