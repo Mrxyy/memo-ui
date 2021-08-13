@@ -17,6 +17,8 @@ meta:
 ## 默认显示*block*
 <CodeEditor :filePath="path" :value="demo2"/>
 
+
+## props
 ### type
 
 ```ts

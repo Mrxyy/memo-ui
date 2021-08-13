@@ -21,7 +21,7 @@ import {demo1,demo2,demo3,path} from "./index.ts"
 <CodeEditor :filePath="path" :value="demo3"/>
 
 
-## props:
+## props
 
 | props  | type   | description | default                    |
 | ------ | ------ | ----------- | -------------------------- |

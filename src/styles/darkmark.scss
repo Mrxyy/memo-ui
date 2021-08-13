@@ -84,6 +84,7 @@ strong {
 }
 
 .markdown-body {
+  overflow: hidden;
 
   > {
 
@@ -300,6 +301,22 @@ strong {
   }
 
   > {
+
+    ul,
+    ol,
+    dl {
+      list-style: space-counter;
+
+      @apply leading-8;
+    }
+
+    ol {
+      list-style: decimal;
+    }
+
+    dl {
+      list-style: circle;
+    }
 
     strong {
       font-weight: 600;
@@ -525,7 +542,6 @@ strong {
     h4,
     h5,
     h6 {
-      margin-top: 24px;
       margin-bottom: 16px;
       font-weight: 600;
       line-height: 1.25;

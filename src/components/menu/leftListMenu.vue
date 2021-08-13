@@ -7,7 +7,7 @@
       :index="i"
     >
       <div
-        :class="{[v.children?.length?'text-secondary font-medium text-gl':'click-item text-sm']:true,'items-center flex':true,'text-dark':v.expand,'active':currentActive === v}"
+        :class="{[v.children?.length?'font-medium text-gl':'click-item text-sm']:true,'items-center flex':true,'text-dark':v.expand,'active':currentActive === v}"
         @click="switchExpand(v)"
       >
         <i

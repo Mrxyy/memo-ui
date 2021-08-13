@@ -10,9 +10,9 @@
 <script lang="ts" setup>
 interface Props{
   tipText:string
-  dirrection:"top"|"bottom"|"left"|"right"
-  defaultshow:string,
-  triggerEvent:string
+  dirrection?:"top"|"bottom"|"left"|"right"
+  defaultshow?:string,
+  triggerEvent?:string
 }
 
 withDefaults(defineProps<Props>(), {
@@ -98,6 +98,7 @@ withDefaults(defineProps<Props>(), {
 
   &::before {
     display: v-bind(defaultshow);
+    width: max-content;
     content: attr(data-title);
 
     @apply absolute border-transparent border bg-primary text-white text-xs p-1 rounded shadow-sm transform z-50;

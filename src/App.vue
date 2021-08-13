@@ -1,6 +1,6 @@
 <template>
   <div class="container" />
-  <TSLR>
+  <TSLR :on-scroll="containerScrollHandler">
     <template #header>
       <nav class="nav">
         <memo />
@@ -14,25 +14,58 @@
         />
       </div>
     </template>
-    <template #main>
-      <div class="main-container">
-        <router-view />
+    <template
+      #main="{scrollContainer}"
+    >
+      <div
+        class="grid grid-cols-5 main-container pb-4"
+      >
+        <div class="col-span-4">
+          <router-view />
+        </div>
+        <div
+          class="col-span-1 hashNav"
+        >
+          <moCarouselTilte
+            :ref="a"
+            :default-actived-item-index="0"
+            :scroll-container="scrollContainer"
+            :title-container="titleContainer"
+          />
+        </div>
       </div>
     </template>
   </TSLR>
 </template>
 
 <script lang="ts">
-import { ref } from "vue";
+import { onMounted, onUpdated, ref, nextTick } from "vue";
 import { menu } from "./site/menu/index";
 import TSLR from "./components/layout/T-SL-R.vue";
 import leftMenu from "./components/menu/leftListMenu.vue";
 import memo from "./components/colour-text/memo.vue";
+import moCarouselTilte from "./components/carousel-tilte/index.vue";
+
 export default {
   components: {
     TSLR,
     leftMenu,
-    memo
+    memo,
+    moCarouselTilte
+  },
+  mounted() {
+    let timer:any = null;
+    this.$router.afterEach(() => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        this.titleContainer = document.querySelector<HTMLElement>(".markdown-body");
+      }, 100);
+    });
+  },
+  methods: {
+    a(el:any) {
+      this.containerScrollHandler = el.containerScrollHandler;
+    }
   }
 };
 </script>
@@ -43,6 +76,8 @@ const menuData = ref([{
   name: "组件",
   children: []
 }]);
+const containerScrollHandler = ref(null);
+const titleContainer = ref<HTMLElement|null>(null);
 menu(menuData.value[0].children);
 </script>
 <style lang="scss" scoped>
@@ -53,7 +88,11 @@ menu(menuData.value[0].children);
   padding: 10px 20px;
 }
 
-.main-container {
-  padding: 20px 10px 40px;
+.hashNav {
+  top: 75px;
+  width: 16%;
+
+  @apply fixed p-3 right-0 my-4;
 }
+
 </style>

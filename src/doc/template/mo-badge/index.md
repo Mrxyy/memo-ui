@@ -5,7 +5,7 @@ meta:
   - content: 徽章
 ---
 
-# 代码编辑
+# 徽章
 > 使用memo的自定义按钮样式进行表单、对话框等操作，并支持多种大小、状态等。
 
 <script setup lang="ts">
@@ -22,7 +22,7 @@ import {dome1,dome2,dome3,path} from "./index.ts"
 ## 提示气泡
 <CodeEditor :filePath="path" :value="dome3"/>
 
-## props:
+## props
 
 | props     | type      | description                      | default          |
 | --------- | --------- | -------------------------------- | ---------------- |

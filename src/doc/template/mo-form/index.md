@@ -5,7 +5,7 @@ meta:
   - content: 表单
 ---
 
-# 代码编辑
+# form表单
 > 使用memo提供丰富的表单功能。例如：input、select、checkbox、radios、switch。
 <script setup lang="ts">
 import {demo1,demo2,demo3,path} from "./index.ts"
@@ -17,8 +17,8 @@ import {demo1,demo2,demo3,path} from "./index.ts"
 ## control
 > 用于表单组件布局控制。
 
-### control内部显示模式,*mode*指定ModeType类型，inline、block、inside指定内部label显示方式为*块*或者*内联*。通过*selfInline*指定自身外部是否是内联显示。
-### slot为制定表单组件。id指定label的*for*。
++ control内部显示模式,*mode*指定ModeType类型，inline、block、inside指定内部label显示方式为*块*或者*内联*。通过*selfInline*指定自身外部是否是内联显示。
++ slot为制定表单组件。id指定label的*for*。
 ### label指定label文本
 <CodeEditor :filePath="path" :value="demo2"/>
 
@@ -37,7 +37,7 @@ import {demo1,demo2,demo3,path} from "./index.ts"
 
 ## switch
 
-## props:
+## props
 
 ```
   export enum ModeType{

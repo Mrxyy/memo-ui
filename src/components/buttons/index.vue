@@ -31,7 +31,6 @@ const { color, size, type } = withDefaults(defineProps<Props>(), {
 });
 
 const sizeOption = computed(() => {
-  console.log(size);
   switch (size) {
     case "small":return "text-sm py-1 px-2.5 rounded";
     case "larger":return "text-lg py-2 px-3.5 rounded-lg";

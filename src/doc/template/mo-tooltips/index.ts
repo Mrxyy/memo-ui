@@ -26,7 +26,7 @@ export const demo2 = `
   <template>
     <div class="demo">
       <div class="grid grid-cols-4 justify-items-center">
-        <moTip tipText="默认是block" defaultShow dirrection="left">
+        <moTip tipText="默认是block" dirrection="left" defaultshow>
           <div>默认是block</div>
         </moTip>
       </div>

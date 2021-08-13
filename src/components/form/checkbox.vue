@@ -1,9 +1,8 @@
 <template>
   <div
-    :class="`mo-checkbox relative styleProps ${$attrs.class}` "
+    :class="`mo-checkbox inline-block align-text-top relative styleProps ${$attrs.class}` "
   >
     <moInput
-      name="a"
       type="checkbox"
       class="appearance-none bi bi-check"
       :="excludeAttr($attrs,['class'])"

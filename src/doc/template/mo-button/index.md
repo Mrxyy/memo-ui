@@ -5,7 +5,7 @@ meta:
   - content: 按钮
 ---
 
-# 代码编辑
+# button按钮
 > 使用memo的自定义按钮样式进行表单、对话框等操作，并支持多种大小、状态等。
 
 <script setup lang="ts">
@@ -21,7 +21,7 @@ import {demo1,demo2,demo3,path} from "./index.ts"
 ## 点击事件
 <CodeEditor :filePath="path" :value="demo3"/>
 
-## props:
+## props
 
 | props   | type                      | description | default        |
 | ------- | ------------------------- | ----------- | -------------- |

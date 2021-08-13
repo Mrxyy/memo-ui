@@ -7,14 +7,37 @@
       <aside class="col-span-1 side">
         <slot name="side" />
       </aside>
-      <section class="col-span-4 main">
-        <slot name="main" />
+      <section
+        ref="scrollContainer"
+        class="col-span-4 main"
+        @scroll="onScroll"
+      >
+        <slot
+          name="main"
+          :scrollContainer="scrollContainer"
+        />
       </section>
     </div>
   </div>
 </template>
+<script lang="ts">
+import { ref } from "vue";
+export default {
+  mounted() {
+    this.scrollContainer = this.$refs.scrollContainer;
+  }
+};
+</script>
 
 <script setup lang="ts">
+interface Props{
+  onScroll?:(e:any)=>any
+}
+withDefaults(defineProps<Props>(), {
+  onScroll: (e) => {}
+});
+
+const scrollContainer = ref(null);
 
 </script>
 
@@ -30,12 +53,21 @@
 
   .side {
     border-right: 1px solid theme('colors.border');
+    overflow-y: overlay;
+
+    &::-webkit-scrollbar-thumb {
+      display: none;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .main {
     overflow-x: hidden;
-    overflow-y: scroll;
     overflow-y: overlay;
+    scroll-behavior: smooth;
   }
 }
 </style>
