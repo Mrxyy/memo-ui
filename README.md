@@ -4,17 +4,17 @@
 ## 注意说明⚠️
 > memo-ui的样式是基于tailwindcss构建，是在继承tailwindcss基础组件、工具类、base标签之上进行了一些样式组件扩展。所以在使用memo-ui构建网站的时候你可以使用他们。
 ## 下一步计划
-+ card组件
-+ table组件
++ ~~card组件~~
++ ~~table组件~~
 + tab组件
 + modal组件
 + navbar组件
-+ loader组件
-+ list组件
++ loading组件
++ ~~list组件~~
 + toasts组件
 + collapse组件
 
-## reference
+## reference
 
 + NPM: [NPM](https://www.npmjs.com/package/memo-ui)
 + github: [github](https://github.com/Mrxyy/memo-ui)
