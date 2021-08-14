@@ -41,7 +41,7 @@
         </div>
         <div
           v-show="v.isExpand"
-          class="child-box p-2"
+          class="child-box py-2 px-6 border-t border-primary border-opacity-40 -mx-4"
         >
           <slot
             name="detailsContent"

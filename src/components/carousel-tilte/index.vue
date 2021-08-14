@@ -7,6 +7,7 @@
       <a
         :class="`text-primary text-opacity-60 hover:text-opacity-100 p-2 ${ i == activedItemIndex ? '!text-opacity-100' : ''}`"
         :tag="v.id.slice(-2)"
+        href="javascript:"
         :style="{'font-size':`${(1.5 - v.id.slice(-1)*0.2)}rem`,'margin-left':`${v.id.slice(-1)*10}px`}"
         @click="hashNavItemHandler(i)"
       >{{ v.innerText }}</a>

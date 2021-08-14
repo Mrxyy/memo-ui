@@ -1,7 +1,7 @@
 <template>
   <div :class="`inline-flex ${disable && 'cursor-not-allowed'}`">
     <button
-      :class="`${sizeOption} ${ round ? '':'!rounded-none'}  hover:ring-opacity-50  ${typeOption} ${disable && 'pointer-events-none opacity-80'}`"
+      :class="`${sizeOption} ${ round ? '':'!rounded-none'}  hover:ring-opacity-50  ${typeOption} ${disable && 'pointer-events-none opacity-80'} w-max`"
       @click="onclick&&onclick()"
       @submit="submit&&onsubmit()"
     >
@@ -22,15 +22,16 @@ interface Props{
   onclick?:()=>any
   onsubmit?:()=>any
 }
-const { color, size, type } = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   color: "primary",
-  size: "medium",
+  size: "small",
   type: "fill",
   disable: false,
   round: true
 });
 
 const sizeOption = computed(() => {
+  const { size } = props;
   switch (size) {
     case "small":return "text-sm py-1 px-2.5 rounded";
     case "larger":return "text-lg py-2 px-3.5 rounded-lg";
@@ -39,10 +40,11 @@ const sizeOption = computed(() => {
 });
 
 const typeOption = computed(() => {
+  const { type, color } = props;
   switch (type) {
-    case "link":return `text-${color} hover:ring-0 hover:underline`;
+    case "link":return `text-${color} hover:ring-0 hover:underline under`;
     case "outline":return `border-${color} border text-${color} hover:ring-${color} hover:bg-${color} hover:text-white  hover:ring`;
-    default:return `bg-${color} text-white hover:ring-${color}  bg-opacity-90  hover:bg-opacity-100 hover:ring`;
+    default:return `bg-${color} text-${color !== "white" ? "light" : "dark"} hover:ring-${color}  bg-opacity-90  hover:bg-opacity-100 hover:ring`;
   }
 });
 
