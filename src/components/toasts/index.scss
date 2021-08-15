@@ -3,6 +3,17 @@
 
   @apply fixed inset-0 bg-danger;
 }
+.message-container{
+  height: 90%;
+  overflow-y: scroll;
+  &::-webkit-scrollbar-thumb {
+    display: none;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 
 .alert-container{
   padding-bottom: 10%;

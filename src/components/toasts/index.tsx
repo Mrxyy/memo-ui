@@ -121,14 +121,16 @@ const app = createApp({
   render() {
     return (<template>
       <Teleport to="body">
-        <div class="inline-flex fixed right-0 top-20 flex-col z-50 message-container">
-          {this.messageContainer.map((v:any)=>(<moToasts class="mb-2" v-slots={{
-            detail:v.detail
-          }} text={v.text} theme={v.type} onClose={v.onClose}>
-          </moToasts>))}
+        <div  class="message-container fixed right-3 top-20">
+          <div class="inline-flex flex-col z-50">
+            {this.messageContainer.map((v:any)=>(<div key={v.id}>
+              <moToasts class="mb-2" v-slots={{
+                detail:v.detail
+              }} text={v.text} theme={v.type} onClose={v.onClose}>
+              </moToasts>
+            </div>))}
+          </div>
         </div>
-        {this.confirmContainer.length}
-        {this.alertContainer.length}
         <div v-show={this.confirmContainer.length > 0 || this.alertContainer.length > 0} class="inline-flex fixed justify-center items-center inset-0 m-auto flex-col z-50 bg-dark bg-opacity-30 alert-container">
           {/* 确认框 */}
           {this.confirmContainer.map((v:any)=>(<div key={v.id}>

@@ -4,7 +4,7 @@ export const demo1 = `<template>
     <moButton @click="btn1">警告信息</moButton>
     <moButton @click="btn2">弹出信息</moButton>
     <moButton @click="btn3">提示信息</moButton>
-    <moButton @click="btn4">确认按钮</moButton>
+    <moButton @click="btn4">确认弹窗</moButton>
   </div>
 </template>
 <script setup lang="ts">
@@ -16,7 +16,8 @@ export const demo1 = `<template>
     onConfirm:()=>{
       alert(1);
       return true;
-    }
+    },
+    detail:"《王者荣耀》是由腾讯游戏天美工作室群开发并运行的一款运营在Android、IOS、NS平台上的MOBA类国产手游。"
   })
   const btn2 = ()=>toasts.alert({
     type:"danger",
