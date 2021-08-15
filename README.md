@@ -6,12 +6,12 @@
 ## 下一步计划
 + ~~card组件~~
 + ~~table组件~~
-+ tab组件
-+ modal组件
++ ~~tab组件~~
++ ~~modal组件~~
 + navbar组件
-+ loading组件
++ ~~loading组件~~
 + ~~list组件~~
-+ toasts组件
++ ~~toasts组件~~
 + collapse组件
 
 ## reference
