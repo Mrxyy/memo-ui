@@ -27,7 +27,7 @@ import moBabge from "@components/badge/index.vue";
 
 export const dome3 = `<template>
   <div class="demo grid grid-cols-3">
-    <h1 class="relative py-1 px-2 w-max bg-primary">这是一个徽章<moBabge color="wraning" type="DOT" isBubble></moBabge></h1>
+    <h1 class="relative py-1 px-2 w-max bg-primary">这是一个徽章<moBabge color="warning" type="DOT" isBubble></moBabge></h1>
   </div>
 </template>
 

@@ -51,10 +51,8 @@ const { width, height, font_size } = computed(() => {
       return { width: "80px", height: "30px", font_size: "1rem" };
   }
 }).value;
-console.log(width, height, font_size);
 
 watch(activeItem, (newVal:valueItem) => {
-  console.log(newVal);
   onChange && onChange(newVal);
 });
 

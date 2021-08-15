@@ -21,11 +21,6 @@ export enum ModeType{
   BLOCK = "block",
   INSIDE = "inside"
 }
-export default {
-  created() {
-    console.log(this.$attrs);
-  }
-};
 </script>
 
 <script setup lang="ts">

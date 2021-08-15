@@ -1,0 +1,9 @@
+.mo-toasts-root {
+  display: none;
+
+  @apply fixed inset-0 bg-danger;
+}
+
+.alert-container{
+  padding-bottom: 10%;
+}

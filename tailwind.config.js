@@ -131,7 +131,7 @@ module.exports = {
     extend: {
       colors: {
         primary: colors.emerald[500], //* 主要 colors.amber.500
-        wraning: colors.yellow[500], // * 警告 colors.amber.500
+        warning: colors.yellow[500], // * 警告 colors.amber.500
         secondary: colors.coolGray[400], // * 次要colors.coolGray.500
         success: {
           hover: colors.green[400],

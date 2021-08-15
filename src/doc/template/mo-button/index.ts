@@ -4,7 +4,7 @@ export const demo1 = `<template>
       small
     </moButton>
     <moButton>mideum</moButton>
-    <moButton color="wraning" size="larger" type="link">larger</moButton>
+    <moButton color="warning" size="larger" type="link">larger</moButton>
   </div>
 </template>
 
