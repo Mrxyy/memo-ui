@@ -11,6 +11,9 @@
     "prepare": "husky install",
     "commitlint": "npx --no-install commitlint --edit $1"
   },
+  "engines": {
+    "node": "15.x"
+  },
   "dependencies": {
     "@kangc/v-md-editor": "^2.3.6",
     "@vueuse/head": "^0.6.0",

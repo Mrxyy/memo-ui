@@ -166,7 +166,7 @@ function VitePluginMarkdown(userOptions = {}) {
     resolveId(source, importe, option) {
       if (/mk=.*/.test(source)) {
         console.count("🐑：");
-        virtualFileId = source.replace(/(.*mk=)|(\?.*)/g, "").replaceAll("!--@", "#");
+        virtualFileId = source.replace(/(.*mk=)|(\?.*)/g, "").replace(/\!--@/g, "#");
         return `${source.replace(/(mk=(.|\s)*)/g, "/mk")}?mk-edit`;
       }
       return null;

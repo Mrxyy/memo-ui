@@ -262,7 +262,7 @@ withDefaults(defineProps<Props>(), {
     },
     async requestRender(vueFile?:string):Promise<any> {
       // console.log(await import("../colour-text/mk"));
-      this.mk = markRaw(defineAsyncComponent(() => import(/* @vite-ignore */`${this.filePath}/mk=${encodeURI(this.text).replaceAll("#", "!--@")}`)));
+      this.mk = markRaw(defineAsyncComponent(() => import(/* @vite-ignore */`${this.filePath}/mk=${encodeURI(this.text).replace(/#/g, "!--@")}`)));
     },
     save(text:string) {
       this.requestRender();
