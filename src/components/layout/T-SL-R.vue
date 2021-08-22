@@ -53,7 +53,9 @@ const scrollContainer = ref(null);
 
   .side {
     border-right: 1px solid theme('colors.border');
+    overflow-x: hidden;
     overflow-y: overlay;
+    scroll-behavior: smooth;
 
     &::-webkit-scrollbar-thumb {
       display: none;

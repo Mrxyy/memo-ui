@@ -12,7 +12,6 @@ export function resolveNameFromPath(path:string, publicPath?:string):string | un
     return path.replace(publicPath, "").replace(/\..*/, "");
   }
   const name = path.match(/\/(\w|\d|-|_)+\./)?.[0].slice(1, -1);
-  console.log(name);
 
   if (name === "index") {
     return resolveNameFromPath(path && path.replace(/\/index/, ""));

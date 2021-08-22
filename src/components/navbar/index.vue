@@ -1,36 +1,39 @@
 <template>
-  <div class="left-list-menu flex flex-col p-2 ">
+  <div class="mo-navbar flex">
     <div
       v-for="v ,i in data"
       :id="v.id"
       :key="v.name"
+      :class="`${isRoot? 'px-4' : ''} relative p-2 cursor-pointer`"
       :index="i"
+      @mouseleave="switchExpand(v,false)"
     >
       <div
-        :class="{[v.children?.length?'font-medium text-gl':'click-item text-sm']:true,'items-center flex':true,'text-dark':v.expand,'active':currentActive === v}"
-        @click="switchExpand(v)"
+        :class="{['click-item text-base']:true,'items-center h-full flex':true,'active':currentActive === v}"
+        @click="switchNavbar(v,true)"
+        @mouseenter="switchExpand(v,true)"
       >
-        <i
-          v-if="v.children?.length"
-          :class="`bi ${v.expand ? ' bi-chevron-down' : 'bi-chevron-right'} text-sm m-2`"
-        />
-        <i
-          v-else
-          :class="`bi bi-file-earmark-post text-sm m-2`"
-        />
         <router-link
           v-if="v.route"
           :to="v.route"
         >
           {{ v.name }}
         </router-link>
-        <div v-else>
+        <div
+          v-else
+          class="w-max"
+        >
           {{ v.name }}
         </div>
+        <i
+          v-if="v.children?.length"
+          :class="`bi ${isRoot ? 'bi-caret-down-fill' : 'bi-caret-right-fill'} text-xs m-2`"
+        />
       </div>
-      <LeftListMenu
+      <Navbar
         v-show="v.expand"
         v-if="v.children"
+        :class="`absolute flex-col ${isRoot? '':'left-full top-1/4'} border rounded border-border border-opacity-20 bg-white`"
         :active-item="currentActive"
         :value="v.children"
       />
@@ -44,7 +47,7 @@ import { START_LOCATION } from "vue-router";
 // https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md#declaring-additional-options
 // ? 必须写在setup之前
 export default {
-  name: "LeftListMenu",
+  name: "Navbar",
   watch: {
     currentActive(n:menuItem) {
       if (this.isRoot) {
@@ -54,11 +57,14 @@ export default {
     }
   },
   methods: {
-    switchExpand(v:menuItem) {
-      if (v.children) {
-        v.expand = !v.expand;
-      } else {
+    switchNavbar(v:menuItem, flag?:boolean) {
+      if (!v.children) {
         this.currentActive = v;
+      }
+    },
+    switchExpand(v:menuItem, flag?:boolean) {
+      if (v.children) {
+        v.expand = flag === undefined ? !v.expand : flag;
       }
     }
   }
@@ -107,16 +113,6 @@ watch(data.value, () => {
 watch(() => props.activeItem, (n:any) => {
   currentActive.value = getCurrentActive();
 });
-
-//! watch lenght不行是因为getCurrentActive函数是为root的vaule设计的
-// watch(() => props.value.length, (n, o) => {
-//   console.log(props.value, n, o);
-//   if (Array.isArray(currentActive.value)) {
-//     currentActive.value = getCurrentActive();
-//     console.log(currentActive.value);
-//   }
-// });
-
 // 读取inject值，没有取
 const isRoot = !inject("currentActive");
 

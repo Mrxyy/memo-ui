@@ -24,14 +24,14 @@ export class LeftListMenu {
   }
 }
 
-export function menu(menuData:LeftListMenu[] = []):void {
+export function menu(menuData:LeftListMenu[] = [], menuDefaultValue?:(v:any)=>any):void {
   const createMenu = (transformName?:string):any => {
     let pervious:LeftListMenu[]|undefined = menuData;
     transformName?.split("/").reduce((count:string, v:string, currentIndex:number, arr:string[]) => {
       const routePath = count + `/${v}`;
       // 最后一项时注册路由，其他为field
       if (currentIndex === arr.length - 1) {
-        v && pervious?.push(new LeftListMenu({ name: v === "index" ? arr[currentIndex - 1] : v, route: v === "index" ? count : routePath }));
+        v && pervious?.push(new LeftListMenu({ name: v === "index" ? arr[currentIndex - 1] : v, route: "/componment" + (v === "index" ? count : routePath) }));
       } else {
         let temp = pervious?.find((item:LeftListMenu) => {
           return item.name === v;
@@ -58,6 +58,7 @@ export function menu(menuData:LeftListMenu[] = []):void {
           v.expand = true;
           mergeSingleMenu(v.children);
         }
+        leftListmenu[i].route === location.pathname && menuDefaultValue && menuDefaultValue(leftListmenu[i]);
       });
     };
     mergeSingleMenu(menuData);

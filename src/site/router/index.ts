@@ -11,7 +11,7 @@ forEachTransformMKDOCPathControler.addDepend((path?:string, value?:any) => {
   path?.split("/").reduce((count:string, v:string, currentIndex:number, arr:string[]) => {
     const routePath = count + `/${v}`;
     if (currentIndex === arr.length - 1) {
-      router.addRoute({ path: `${v === "index" ? count : routePath}`, component: value });
+      router.addRoute({ path: "/componment" + `${v === "index" ? count : routePath}`, component: value });
       // v && menuData.push(new LeftListMenu({ name: v === "index" ? arr[currentIndex - 1] : v, route: v === "index" ? count : routePath }));
     }
     return routePath;

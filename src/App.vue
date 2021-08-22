@@ -4,13 +4,18 @@
     <template #header>
       <nav class="nav">
         <memo />
+        <moNavbar
+          :value="data"
+          :active-item="[2]"
+          class="float-right"
+        />
       </nav>
     </template>
     <template #side>
       <div class="side-container">
         <left-menu
           :value="menuData"
-          :active-item="[0,0]"
+          :active-item="menuDefaultValue"
         />
       </div>
     </template>
@@ -40,11 +45,13 @@
 
 <script lang="ts">
 import { onMounted, onUpdated, ref, nextTick } from "vue";
+import { useRoute } from "vue-router";
 import { menu } from "./site/menu/index";
 import TSLR from "./components/layout/T-SL-R.vue";
 import leftMenu from "./components/menu/leftListMenu.vue";
 import memo from "./components/colour-text/memo.vue";
 import moCarouselTilte from "./components/carousel-tilte/index.vue";
+import moNavbar from "./components/navbar/index.vue";
 
 export default {
   components: {
@@ -78,7 +85,27 @@ const menuData = ref([{
 }]);
 const containerScrollHandler = ref(null);
 const titleContainer = ref<HTMLElement|null>(null);
-menu(menuData.value[0].children);
+const menuDefaultValue = ref([0, 0]);
+const data = ref([{
+  id: "home",
+  name: "首页",
+  route: "/"
+}, {
+  id: "document",
+  name: "文档",
+  route: "/document"
+}, {
+  id: "componment",
+  name: "组件",
+  route: "/componment"
+}, {
+  id: "log",
+  name: "更新日志",
+  route: "/log"
+}]);
+menu(menuData.value[0].children, (v:any) => {
+  menuDefaultValue.value = v;
+});
 </script>
 <style lang="scss" scoped>
 .nav {
@@ -86,6 +113,8 @@ menu(menuData.value[0].children);
   align-items: center;
   height: 100%;
   padding: 10px 20px;
+
+  @apply w-full justify-between;
 }
 
 .hashNav {

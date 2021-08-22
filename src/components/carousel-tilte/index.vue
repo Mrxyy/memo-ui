@@ -74,7 +74,7 @@ export default {
       this.addHashForTitle(titleArr);
     },
     hashNavItemHandler(i:number) {
-      const lastElTop = this.markdownBody && this.titleArr[this.titleArr.length - 1].offsetTop - this.markdownBody.offsetTop;
+      const lastElTop = this.markdownBody && this.markdownBody.offsetHeight;
       if (this.scrollContainer && this.markdownBody && lastElTop) {
         Reflect.set(this.scrollContainer, "scrollTop", Math.ceil((this.titleArr[i].offsetTop - this.markdownBody.offsetTop) / lastElTop * (this.scrollContainer?.scrollHeight - this.scrollContainer?.offsetHeight)));
       }
@@ -87,7 +87,8 @@ export default {
     },
     containerScrollHandler() {
       // 最后一个元素距离offsetParent距离
-      const lastElTop = this.markdownBody && this.titleArr[this.titleArr.length - 1].offsetTop - this.markdownBody.offsetTop;
+      const lastElTop = this.markdownBody && this.markdownBody.offsetHeight;
+      // this.titleArr[this.titleArr.length - 1].offsetTop - this.markdownBody.offsetTop;
       this.titleArr.find((v:HTMLElement, i:number) => {
         const flag = this.scrollContainer && this.markdownBody && lastElTop && this.scrollContainer?.scrollTop / (this.scrollContainer?.scrollHeight - this.scrollContainer?.offsetHeight) < (v.offsetTop - this.markdownBody.offsetTop) / lastElTop;
         if (flag) {
