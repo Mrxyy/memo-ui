@@ -1,6 +1,29 @@
 {
   "version": "0.0.0",
   "name": "memo-ui",
+  "files": [
+    "dist"
+  ],
+  "description": "An efficient component library built on vue3、ts、vite",
+  "keywords": ["vue3","ui","vue"],
+  "main": "./dist/memo-ui.umd.js",
+  "module": "./dist/memo-ui.es.js",
+  "types": "./src/index.ts",
+  "homepage": "https://github.com/Mrxyy/memo-ui",
+  "bugs": {
+    "url" : "https://github.com/Mrxyy/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mrxyy/memo-ui"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/memo-ui.es.js",
+      "require": "./dist/memo-ui.umd.js"
+    },
+    "./style.css": "./dist/style.css"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -28,7 +51,6 @@
     "vue-quill-editor": "^3.0.6",
     "vue-router": "4"
   },
-  "types": "main.ts",
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",

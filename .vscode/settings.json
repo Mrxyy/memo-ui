@@ -1,6 +1,0 @@
-{
-  "trailing-spaces.logLevel": "error",
-  "[markdown]": {
-    "editor.quickSuggestions": true
-  }
-}

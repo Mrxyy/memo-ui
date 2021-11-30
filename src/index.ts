@@ -1,13 +1,15 @@
 import { DefineComponent } from "vue";
+import "./styles/index.scss";
 import { kebabtoCamel, firstLetterToUppper, forEachTransformPath } from "./utils/viteGlobalImport";
 const forEachTransformPathControler = forEachTransformPath(import.meta.globEager("./components/**/*.vue"));
 interface EsModel{
   [x:string]:any,
   default:DefineComponent<{}, {}, any>
 }
-const memo:{[name:string]:(DefineComponent<{}, {}, any> | undefined | ((app:DefineComponent<{}, {}, any>, options:any)=>any))} = {};
+const memo:{install: PluginInstallFunction,[name:string]:(DefineComponent<{}, {}, any> | undefined | ((app:DefineComponent<{}, {}, any>, options:any)=>any))} = {};
 forEachTransformPathControler.addDepend((path?:string, value?:EsModel) => {
   if (path) {
+    console.log("mo" + firstLetterToUppper(kebabtoCamel(path)));
     memo["mo" + firstLetterToUppper(kebabtoCamel(path))] = value?.default;
   }
 });
