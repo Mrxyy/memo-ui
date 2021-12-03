@@ -5,13 +5,17 @@
     "dist"
   ],
   "description": "An efficient component library built on vue3、ts、vite",
-  "keywords": ["vue3","ui","vue"],
+  "keywords": [
+    "vue3",
+    "ui",
+    "vue"
+  ],
   "main": "./dist/memo-ui.umd.js",
   "module": "./dist/memo-ui.es.js",
   "types": "./src/index.ts",
   "homepage": "https://github.com/Mrxyy/memo-ui",
   "bugs": {
-    "url" : "https://github.com/Mrxyy/issues"
+    "url": "https://github.com/Mrxyy/issues"
   },
   "repository": {
     "type": "git",
@@ -32,7 +36,17 @@
     "lint:js": "eslint --ext \".js,.ts\" --ignore-path .gitignore . --fix",
     "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore --fix",
     "prepare": "husky install",
+    "watch": "npm-watch",
     "commitlint": "npx --no-install commitlint --edit $1"
+  },
+  "watch": {
+    "build": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "*",
+      "quiet": false
+    }
   },
   "engines": {
     "node": "15.x"
@@ -73,6 +87,7 @@
     "eslint-plugin-typescript": "^0.14.0",
     "eslint-plugin-vue": "^7.13.0",
     "husky": "^7.0.1",
+    "npm-watch": "^0.11.0",
     "sass": "^1.35.2",
     "serve-static": "^1.14.1",
     "stylelint": "^13.13.1",
