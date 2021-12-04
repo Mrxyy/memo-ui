@@ -32,7 +32,7 @@
           class="col-span-1 hashNav"
         >
           <moCarouselTilte
-            :ref="a"
+            :ref="scrollInstance"
             :default-actived-item-index="0"
             :scroll-container="scrollContainer"
             :title-container="titleContainer"
@@ -60,6 +60,29 @@ export default {
     memo,
     moCarouselTilte
   },
+  data() {
+    return {
+      containerScrollHandler: null,
+      titleContainer: null,
+      data: [{
+        id: "home",
+        name: "首页",
+        route: "/"
+      }, {
+        id: "document",
+        name: "文档",
+        route: "/document"
+      }, {
+        id: "componment",
+        name: "组件",
+        route: "/componment"
+      }, {
+        id: "log",
+        name: "更新日志",
+        route: "/log"
+      }]
+    };
+  },
   mounted() {
     let timer:any = null;
     this.$router.afterEach(() => {
@@ -70,7 +93,8 @@ export default {
     });
   },
   methods: {
-    a(el:any) {
+    // ref 介绍一个函数
+    scrollInstance(el:any) {
       this.containerScrollHandler = el.containerScrollHandler;
     }
   }
@@ -83,26 +107,7 @@ const menuData = ref([{
   name: "组件",
   children: []
 }]);
-const containerScrollHandler = ref(null);
-const titleContainer = ref<HTMLElement|null>(null);
 const menuDefaultValue = ref([0, 0]);
-const data = ref([{
-  id: "home",
-  name: "首页",
-  route: "/"
-}, {
-  id: "document",
-  name: "文档",
-  route: "/document"
-}, {
-  id: "componment",
-  name: "组件",
-  route: "/componment"
-}, {
-  id: "log",
-  name: "更新日志",
-  route: "/log"
-}]);
 menu(menuData.value[0].children, (v:any) => {
   menuDefaultValue.value = v;
 });

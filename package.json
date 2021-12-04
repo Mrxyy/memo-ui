@@ -30,7 +30,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build-doc": "vite build",
+    "build": "set target=library&&vite build",
     "serve": "vite preview",
     "noEmit": "vue-tsc --noEmit",
     "lint:js": "eslint --ext \".js,.ts\" --ignore-path .gitignore . --fix",

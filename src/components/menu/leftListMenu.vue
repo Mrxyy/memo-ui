@@ -1,6 +1,11 @@
 <template>
   <div class="left-list-menu flex flex-col p-2">
-    <div v-for="(v, i) in data" :id="v.id" :key="v.name" :index="i">
+    <div
+      v-for="(v, i) in data"
+      :id="v.id"
+      :key="v.name"
+      :index="i"
+    >
       <div
         :class="{
           [v.children
@@ -17,11 +22,18 @@
           :class="`bi ${v.expand ? ' bi-chevron-down' : 'bi-chevron-right'
           } text-sm m-2`"
         />
-        <i v-else :class="`bi bi-file-earmark-post text-sm m-2`" />
+        <i
+          v-else
+          :class="`bi bi-file-earmark-post text-sm m-2`"
+        />
         <template v-if="v.route">
-          <router-link :to="v.route">{{ v.name }}</router-link>
+          <router-link :to="v.route">
+            {{ v.name }}
+          </router-link>
         </template>
-        <div v-else>{{ v.name }}</div>
+        <div v-else>
+          {{ v.name }}
+        </div>
       </div>
       <LeftListMenu
         v-show="v.expand"
@@ -36,20 +48,12 @@
 </template>
 
 <script lang="ts">
-import { inject, provide, ref, watch } from "vue";
+import { getCurrentInstance, inject, provide, ref, watch } from "vue";
 import { START_LOCATION } from "vue-router";
 // https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md#declaring-additional-options
 // ? 必须写在setup之前
 export default {
-  name: "LeftListMenu",
-  watch: {
-    currentActive(n: menuItem) {
-      if (this.isRoot) {
-        n.route && this.$router && this.$router.push(n.route);
-        Reflect.set(window, "hashBash", undefined);
-      }
-    }
-  }
+  name: "LeftListMenu"
 };
 </script>
 
@@ -124,6 +128,14 @@ const isRoot = !inject("currentActive");
 
 const currentActive = inject("currentActive", ref(initActive));
 
+const app:any = getCurrentInstance();
+watch(currentActive, (n: menuItem) => {
+  if (isRoot) {
+    n.route && app.appContext.config.globalProperties?.$router.push(n.route);
+    Reflect.set(window, "hashBash", undefined);
+  }
+});
+
 defineExpose({
   currentActive,
   isRoot
@@ -141,7 +153,6 @@ function switchExpand(v: menuItem) {
     currentActive.value = v;
   }
 }
-
 
 provide("currentActive", currentActive);
 </script>
