@@ -9,7 +9,7 @@
       <div
         :class="{
           [v.children
-            ? 'font-medium text-gl'
+            ? 'click-item font-medium text-gl'
             : 'click-item text-sm']: true,
           'items-center flex': true,
           'text-dark': v.expand,
@@ -147,6 +147,7 @@ function switchExpand(v: menuItem) {
     // directory
     v.expand = !v.expand;
     props.directoryOpenHandler && props.directoryOpenHandler(v);
+    currentActive.value = v;
   } else {
     // file
     props.fileOpenHandler && props.fileOpenHandler(v);
