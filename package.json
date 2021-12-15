@@ -26,12 +26,13 @@
       "import": "./dist/memo-ui.es.js",
       "require": "./dist/memo-ui.umd.js"
     },
-    "./style.css": "./dist/style.css"
+    "./style.css": "./dist/style.css",
+    "./*": "./src/components/*"
   },
   "scripts": {
     "dev": "vite",
     "build-doc": "vite build",
-    "build": "set target=library&&vite build",
+    "build": "export target=library&&vite build",
     "serve": "vite preview",
     "noEmit": "vue-tsc --noEmit",
     "lint:js": "eslint --ext \".js,.ts\" --ignore-path .gitignore . --fix",

@@ -1,10 +1,11 @@
 
 export const demo1 = `<template>
-  <div class="demo grid grid-cols-4">
+  <div class="demo grid grid-cols-5">
     <moButton @click="btn1">警告信息</moButton>
-    <moButton @click="btn2">弹出信息</moButton>
+    <moButton @click="btn2">输入信息</moButton>
     <moButton @click="btn3">提示信息</moButton>
     <moButton @click="btn4">确认弹窗</moButton>
+    <moButton color="danger" @click="btn5">弹出信息</moButton>
   </div>
 </template>
 <script setup lang="ts">
@@ -19,11 +20,11 @@ export const demo1 = `<template>
     },
     detail:"《王者荣耀》是由腾讯游戏天美工作室群开发并运行的一款运营在Android、IOS、NS平台上的MOBA类国产手游。"
   })
-  const btn2 = ()=>toasts.alert({
-    type:"danger",
-    text:"王者更新，赶快来下载体验吧 !!!",
-    onConfirm:()=>{
-      alert(1);
+  const btn2 = ()=>toasts.prompt({
+    detail:11,
+    text:"请输入文件名",
+    onConfirm:(value)=>{
+      alert(value);
       return true;
     }
   })
@@ -37,6 +38,15 @@ export const demo1 = `<template>
     text:"王者更新，赶快来下载体验吧 !!!",
     type:"warning",
     detail:"《王者荣耀》是由腾讯游戏天美工作室群开发并运行的一款运营在Android、IOS、NS平台上的MOBA类国产手游。"
+  })
+  const btn5 = ()=>toasts.alert({
+    type:"danger",
+    detail:11,
+    text:"王者更新，赶快来下载体验吧 !!!",
+    onConfirm:()=>{
+      alert(1);
+      return true
+    }
   })
 </script>
 `;

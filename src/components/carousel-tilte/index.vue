@@ -1,14 +1,11 @@
 <template>
   <div class="mo-carousel-tilte">
-    <div
-      v-for="v,i in titleArr"
-      :key="v.id"
-    >
+    <div v-for="v,i in titleArr" :key="v.id">
       <a
-        :class="`text-primary text-opacity-60 hover:text-opacity-100 p-2 ${ i == activedItemIndex ? '!text-opacity-100' : ''}`"
+        :class="`text-primary text-opacity-60 hover:text-opacity-100 p-2 ${i == activedItemIndex ? '!text-opacity-100' : ''}`"
         :tag="v.id.slice(-2)"
         href="javascript:"
-        :style="{'font-size':`${(1.5 - v.id.slice(-1)*0.2)}rem`,'margin-left':`${v.id.slice(-1)*10}px`}"
+        :style="{ 'font-size': `${(1.5 - v.id.slice(-1) * 0.2)}rem`, 'margin-left': `${v.id.slice(-1) * 10}px` }"
         @click="hashNavItemHandler(i)"
       >{{ v.innerText }}</a>
     </div>
@@ -16,15 +13,15 @@
 </template>
 
 <script lang="ts">
-interface DataType{
-  titleArr:any[]
-  activedItemIndex:number
-  markdownBody:HTMLElement | null
+interface DataType {
+  titleArr: any[]
+  activedItemIndex: number
+  markdownBody: HTMLElement | null
 }
 export default {
   props: {
     scrollContainer: {
-      type: HTMLElement,
+      type: Object,
       default: null
     },
     defaultActivedItemIndex: {
@@ -38,7 +35,7 @@ export default {
       default: true
     },
     titleContainer: {
-      type: HTMLElement,
+      type: Object,
       default: null
     },
     titleElementTag: {
@@ -47,7 +44,7 @@ export default {
       default: () => [">h1", ">h2", ">h3", ">h4", ">h5", ">h6", ">h7"]
     }
   },
-  data():DataType {
+  data(): DataType {
     return {
       titleArr: [],
       activedItemIndex: this.defaultActivedItemIndex,
@@ -57,7 +54,7 @@ export default {
   watch: {
     titleContainer: {
       immediate: true,
-      handler(this:any) {
+      handler(this: any) {
         this.init();
       }
     }
@@ -67,21 +64,21 @@ export default {
       this.initHandler();
     },
     initHandler() {
-      const mkContainer:HTMLElement|null = this.titleContainer;
+      const mkContainer: HTMLElement | null = this.titleContainer;
       this.markdownBody = mkContainer as HTMLElement;
-      const selector:string = typeof this.titleElementTag === "string" ? this.titleElementTag : this.titleElementTag.reduce<string>((count, nextValue) => count + ",.markdown-body " + nextValue, "").slice(1);
+      const selector: string = typeof this.titleElementTag === "string" ? this.titleElementTag : this.titleElementTag.reduce<string>((count, nextValue) => count + ",.markdown-body " + nextValue, "").slice(1);
       const titleArr = mkContainer?.querySelectorAll(selector);
       this.addHashForTitle(titleArr);
     },
-    hashNavItemHandler(i:number) {
+    hashNavItemHandler(i: number) {
       const lastElTop = this.markdownBody && this.markdownBody.offsetHeight;
       if (this.scrollContainer && this.markdownBody && lastElTop) {
         Reflect.set(this.scrollContainer, "scrollTop", Math.ceil((this.titleArr[i].offsetTop - this.markdownBody.offsetTop) / lastElTop * (this.scrollContainer?.scrollHeight - this.scrollContainer?.offsetHeight)));
       }
     },
-    addHashForTitle(titleArr?:NodeList) {
+    addHashForTitle(titleArr?: NodeList) {
       this.titleArr = titleArr?.length ? Array.from(titleArr) : [];
-      titleArr && titleArr.forEach((v:any, i) => {
+      titleArr && titleArr.forEach((v: any, i) => {
         v.id = `mo-title` + i + "-" + v.nodeName;
       });
     },
@@ -89,7 +86,7 @@ export default {
       // 最后一个元素距离offsetParent距离
       const lastElTop = this.markdownBody && this.markdownBody.offsetHeight;
       // this.titleArr[this.titleArr.length - 1].offsetTop - this.markdownBody.offsetTop;
-      this.titleArr.find((v:HTMLElement, i:number) => {
+      this.titleArr.find((v: HTMLElement, i: number) => {
         const flag = this.scrollContainer && this.markdownBody && lastElTop && this.scrollContainer?.scrollTop / (this.scrollContainer?.scrollHeight - this.scrollContainer?.offsetHeight) < (v.offsetTop - this.markdownBody.offsetTop) / lastElTop;
         if (flag) {
           this.activedItemIndex = i ? i - 1 : 0;

@@ -3,9 +3,11 @@
 
   @apply fixed inset-0 bg-danger;
 }
-.message-container{
-  height: 90%;
+
+.message-container {
+  max-height: 85%;
   overflow-y: scroll;
+
   &::-webkit-scrollbar-thumb {
     display: none;
   }
@@ -15,6 +17,6 @@
   }
 }
 
-.alert-container{
+.alert-container {
   padding-bottom: 10%;
 }

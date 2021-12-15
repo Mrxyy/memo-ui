@@ -1,6 +1,7 @@
-import { defineComponent, createApp, h, getCurrentInstance ,Teleport} from "vue";
+import { defineComponent, createApp, h, getCurrentInstance ,Teleport,ref} from "vue";
 import moToasts from "./index.vue"
 import moButton from "../buttons/index.vue";
+import moInput from "../form/input.vue"
 import "./index.scss";
 
 if(!document.querySelector("#toastsRoot")){
@@ -15,6 +16,7 @@ interface DataType{
   alertContainer:ToastsData[]
   confirmContainer:ToastsData[]
   messageContainer:ToastsData[]
+  promptContainer:ToastsData[]
 }
 
 class ToastsData {
@@ -23,11 +25,11 @@ class ToastsData {
   id?:string
   detail?:JSX.Element | string
   onClose?:()=>boolean
-  onConfirm?:()=>boolean
+  onConfirm?:(value?:any)=>boolean
   onCancel?:()=>boolean
   isAlways:boolean
   duration?:number
-  kind?:"alert" | "mesage" | "confirm"
+  kind?:"alert" | "mesage" | "confirm" | 'prompt'
   constructor({type,text,detail,onClose,id,duration,isAlways,kind,onConfirm,onCancel}:ToastsData) {
     this.kind = kind ?? "mesage"
     this.type = type ?? "info"
@@ -48,13 +50,14 @@ const app = createApp({
     return {
       alertContainer:[],
       confirmContainer:[],
-      messageContainer:[]
+      messageContainer:[],
+      promptContainer:[]
     }
   },
   components:{
     moToasts,
-    Teleport,
-    moButton
+    moButton,
+    moInput
   },
   mounted(){
 
@@ -78,8 +81,8 @@ const app = createApp({
         flag && this.$nextTick(()=>this.removeMessage(toastsData,containerBox));
         return flag;
       }
-      toastsData.onConfirm = ()=>{
-        const flag = onConfirm ? onConfirm() : true;
+      toastsData.onConfirm = (value?:any)=>{
+        const flag = onConfirm ? onConfirm(value) : true;
         flag && this.$nextTick(()=>this.removeMessage(toastsData,containerBox));
         return flag;
       }
@@ -116,7 +119,18 @@ const app = createApp({
       toastsData.kind = "confirm";
       toastsData.isAlways = true;
       this.addMessage(new ToastsData(toastsData),this.confirmContainer);
-    }
+    },
+    prompt(toastsData:ToastsData){
+      const input = ref<string>('');
+      toastsData.kind = "prompt";
+      toastsData.isAlways = true;
+      toastsData.detail = <moInput onChange={({target = {value:''}})=>{input.value = target?.value}}/>; //fef 绑定细节
+      const onConfirmFx = toastsData.onConfirm;
+      toastsData.onConfirm = ()=>{
+        return onConfirmFx ? onConfirmFx(input.value) : true;
+      }
+      this.addMessage(new ToastsData(toastsData),this.promptContainer);
+    },
   },
   render() {
     return (<template>
@@ -131,7 +145,7 @@ const app = createApp({
             </div>))}
           </div>
         </div>
-        <div v-show={this.confirmContainer.length > 0 || this.alertContainer.length > 0} class="inline-flex fixed justify-center items-center inset-0 m-auto flex-col z-50 bg-dark bg-opacity-30 alert-container">
+        <div v-show={this.confirmContainer.length > 0 || this.alertContainer.length > 0 || this.promptContainer.length > 0} class="inline-flex fixed justify-center items-center inset-0 m-auto flex-col z-50 bg-dark bg-opacity-30 alert-container">
           {/* 确认框 */}
           {this.confirmContainer.map((v:any)=>(<div key={v.id}>
               <moToasts class="mb-2" v-slots={{
@@ -144,6 +158,13 @@ const app = createApp({
               <moToasts class="mb-2" v-slots={{
               detail:v.detail
             }} text={v.text} theme={v.type} onConfirm={v.onConfirm} isAlways={true} type={v.kind} >
+            </moToasts>
+          </div>))}
+          {/* 输入框 */}
+          {this.promptContainer.map((v:any)=>(<div key={v.id}>
+              <moToasts class="mb-2" v-slots={{
+              detail:v.detail
+            }} text={v.text} theme={v.type} onConfirm={v.onConfirm}  onCancel={v.onCancel} isAlways={true} type={v.kind}>
             </moToasts>
           </div>))}
         </div>
