@@ -4,6 +4,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 import { kebabtoCamel, firstLetterToUppper, forEachTransformPath } from "./utils/viteGlobalImport";
 const forEachTransformPathControler = forEachTransformPath(import.meta.globEager("./components/**/*.vue"));
+export { default as toast } from "./components/toasts";
 
 type PluginInstallFunction = any
 
