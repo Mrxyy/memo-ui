@@ -26,12 +26,7 @@
           v-else
           :class="`bi bi-file-earmark-post text-sm m-2`"
         />
-        <template v-if="v.route">
-          <router-link :to="v.route">
-            {{ v.name }}
-          </router-link>
-        </template>
-        <div v-else>
+        <div>
           {{ v.name }}
         </div>
       </div>
@@ -58,6 +53,7 @@ export default {
 </script>
 
 <script setup lang="ts">
+console.log("setup menu");
 interface menuItem {
   name: string;
   children?: menuItem[];
@@ -107,6 +103,7 @@ watch(data.value, () => {
   }
 });
 
+// set active component outside
 watch(
   () => props.activeItem,
   (n: any) => {
@@ -129,6 +126,12 @@ const isRoot = !inject("currentActive");
 const currentActive = inject("currentActive", ref(initActive));
 
 const app:any = getCurrentInstance();
+
+if (isRoot) {
+  console.log(initActive);
+  initActive.route && app.appContext.config.globalProperties?.$router.push(initActive.route);
+}
+
 watch(currentActive, (n: menuItem) => {
   if (isRoot) {
     n.route && app.appContext.config.globalProperties?.$router.push(n.route);

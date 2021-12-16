@@ -1,15 +1,18 @@
 <template>
   <div class="app-container">
-    <div class="grid grid-cols-5 grid-rows-2  grid-rows-layout layout">
-      <nav class="col-span-5 header">
+    <div class="grid grid-rows-2 grid-rows-layout layout">
+      <nav class="col-span-full header">
         <slot name="header" />
       </nav>
-      <aside class="col-span-1 side">
-        <slot name="side" />
+      <aside :class="`${$slots.side ? 'side' :''} min-w-max`">
+        <slot
+          v-if="$slots.side"
+          name="side"
+        />
       </aside>
       <section
         ref="scrollContainer"
-        class="col-span-4 main"
+        class="main"
         @scroll="onScroll"
       >
         <slot
@@ -21,15 +24,21 @@
   </div>
 </template>
 <script lang="ts">
+import { log } from "console";
 import { ref } from "vue";
 export default {
+  beforeCreate() {
+    console.log("beforeCreate layout");
+  },
   mounted() {
+    console.log("mounted layout");
     this.scrollContainer = this.$refs.scrollContainer;
   }
 };
 </script>
 
 <script setup lang="ts">
+console.log("setup layout");
 interface Props{
   onScroll?:(e:any)=>any
 }
@@ -43,6 +52,7 @@ const scrollContainer = ref(null);
 
 <style lang="scss" scoped>
 .app-container > .layout {
+  grid-template-columns: max-content 1fr;
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -52,10 +62,10 @@ const scrollContainer = ref(null);
   }
 
   .side {
-    border-right: 1px solid theme('colors.border');
     overflow-x: hidden;
     overflow-y: overlay;
     scroll-behavior: smooth;
+    border-right: 1px solid theme('colors.border');
 
     &::-webkit-scrollbar-thumb {
       display: none;

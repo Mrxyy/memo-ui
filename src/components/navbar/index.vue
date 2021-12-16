@@ -13,14 +13,7 @@
         @click="switchNavbar(v,true)"
         @mouseenter="switchExpand(v,true)"
       >
-        <router-link
-          v-if="v.route"
-          :to="v.route"
-        >
-          {{ v.name }}
-        </router-link>
         <div
-          v-else
           class="w-max"
         >
           {{ v.name }}
@@ -52,7 +45,6 @@ export default {
     currentActive(n:menuItem) {
       if (this.isRoot) {
         n.route && this.$router && this.$router.push(n.route);
-        Reflect.set(window, "hashBash", undefined);
       }
     }
   },

@@ -1,18 +1,21 @@
 <template>
-  <div class="container" />
   <TSLR :on-scroll="containerScrollHandler">
     <template #header>
       <nav class="nav">
         <memo />
         <moNavbar
-          :value="data"
-          :active-item="[2]"
+          ref="navbar"
+          :value="navData"
+          :active-item="navbarActiveItem"
           class="float-right"
         />
       </nav>
     </template>
     <template #side>
-      <div class="side-container">
+      <div
+        v-if="isShowNavbar"
+        class="side-container"
+      >
         <left-menu
           :value="menuData"
           :active-item="menuDefaultValue"
@@ -25,13 +28,14 @@
       <div
         class="grid grid-cols-5 main-container pb-4"
       >
-        <div class="col-span-4">
+        <div :class="`col-span-${isShowNavbar?4:5}`">
           <router-view />
         </div>
         <div
           class="col-span-1 hashNav"
         >
           <moCarouselTilte
+            v-show="isShowNavbar"
             :ref="scrollInstance"
             :default-actived-item-index="0"
             :scroll-container="scrollContainer"
@@ -52,6 +56,7 @@ import leftMenu from "./components/menu/leftListMenu.vue";
 import memo from "./components/colour-text/memo.vue";
 import moCarouselTilte from "./components/carousel-tilte/index.vue";
 import moNavbar from "./components/navbar/index.vue";
+import { log } from "console";
 
 export default {
   components: {
@@ -64,7 +69,7 @@ export default {
     return {
       containerScrollHandler: null,
       titleContainer: null,
-      data: [{
+      navData: [{
         id: "home",
         name: "首页",
         route: "/"
@@ -83,7 +88,28 @@ export default {
       }]
     };
   },
+  computed: {
+    navbarActiveItem():Array<number> {
+      let index = 0;
+      this.navData.map(({ route }, i) => {
+        index = new RegExp("^" + route, "g").test(this.$route.path) ? i : index;
+      });
+      return [index];
+    },
+    isShowNavbar():boolean {
+      console.log(this.$route);
+      console.count("🐻");
+      return /^(\/componment)/g.test(this.$route.path);
+    }
+  },
+  beforeCreate() {
+    console.log("created before");
+  },
+  created() {
+    console.log("created");
+  },
   mounted() {
+    console.log("mount");
     let timer:any = null;
     this.$router.afterEach(() => {
       clearTimeout(timer);
@@ -103,12 +129,14 @@ export default {
 
 <script setup lang="ts">
 //! 这里是在create之前执行，是需要app mount之后执行 所以star启动需要app mount之后
+console.log("setup");
 const menuData = ref([{
   name: "组件",
   children: []
 }]);
 const menuDefaultValue = ref([0, 0]);
 menu(menuData.value[0].children, (v:any) => {
+  console.log(v);
   menuDefaultValue.value = v;
 });
 </script>
