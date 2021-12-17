@@ -35,7 +35,7 @@
           class="col-span-1 hashNav"
         >
           <moCarouselTilte
-            v-show="isShowNavbar"
+            v-show="isShowNavbar || isShowDocument"
             :ref="scrollInstance"
             :default-actived-item-index="0"
             :scroll-container="scrollContainer"
@@ -56,12 +56,12 @@ import leftMenu from "./components/menu/leftListMenu.vue";
 import memo from "./components/colour-text/memo.vue";
 import moCarouselTilte from "./components/carousel-tilte/index.vue";
 import moNavbar from "./components/navbar/index.vue";
-import { log } from "console";
 
 export default {
   components: {
     TSLR,
     leftMenu,
+    moNavbar,
     memo,
     moCarouselTilte
   },
@@ -97,9 +97,10 @@ export default {
       return [index];
     },
     isShowNavbar():boolean {
-      console.log(this.$route);
-      console.count("🐻");
       return /^(\/componment)/g.test(this.$route.path);
+    },
+    isShowDocument():boolean {
+      return /^(\/document)/g.test(this.$route.path);
     }
   },
   beforeCreate() {
