@@ -4,6 +4,9 @@ module.exports = {
       fix: true
     },
     tailwindcss: {},
-    autoprefixer: {}
+    autoprefixer: {},
+    cssnano: {
+      preset: "default" // 压缩
+    }
   }
 };

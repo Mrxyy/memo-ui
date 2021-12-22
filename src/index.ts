@@ -4,7 +4,6 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 import { kebabtoCamel, firstLetterToUppper, forEachTransformPath } from "./utils/viteGlobalImport";
 const forEachTransformPathControler = forEachTransformPath(import.meta.globEager("./components/**/*.vue"));
-export { default as toast } from "./components/toasts";
 
 type PluginInstallFunction = any
 
@@ -21,7 +20,6 @@ forEachTransformPathControler.addDepend((path?: string, value?: EsModel) => {
     memo["mo" + firstLetterToUppper(kebabtoCamel(path))] = value?.default;
   }
 });
-
 memo.install = function (app: App) {
   Object.entries<DefineComponent<{}, {}, any>>(memo as Plugin).forEach((v: any[]) => {
     if (typeof v[1] !== "function") {

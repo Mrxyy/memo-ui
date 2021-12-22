@@ -1,6 +1,11 @@
-const colors = require("tailwindcss/colors");
+const { theme } = require("theme");
 const plugin = require("tailwindcss/plugin");
 module.exports = {
+  purge: {
+    enabled: true,
+    content: ["**/*"],
+    safelist: Object.keys(theme).map((v) => new RegExp(`${v}$`, "g"))
+  },
   variants: {
     accessibility: ["responsive", "focus-within", "focus", "important"],
     alignContent: ["responsive", "important"],
@@ -129,22 +134,7 @@ module.exports = {
   },
   theme: {
     extend: {
-      colors: {
-        primary: colors.emerald[500], //* 主要 colors.amber.500
-        warning: colors.yellow[500], // * 警告 colors.amber.500
-        secondary: colors.coolGray[400], // * 次要colors.coolGray.500
-        success: {
-          hover: colors.green[400],
-          DEFAULT: colors.green[500]
-        }, //* colors.amber.600
-        link: colors.blue[300],
-        "link-hover": colors.blue[500],
-        info: colors.teal[500],
-        danger: colors.red[800],
-        light: colors.blueGray[50],
-        dark: colors.blueGray[800],
-        border: colors.trueGray[300]
-      },
+      colors: theme,
       gridTemplateRows: {
         layout: "75px auto"
       },
@@ -154,7 +144,7 @@ module.exports = {
     }
   },
   plugins: [
-    plugin(function({ addVariant }) {
+    plugin(function ({ addVariant }) {
       addVariant("important", ({ container }) => {
         // ! 给每一个类多加一个!important
         container.walkRules(rule => {

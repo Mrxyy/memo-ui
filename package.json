@@ -30,9 +30,10 @@
     "./*": "./src/components/*"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --force",
     "build-doc": "vite build",
     "build": "export target=library&&vite build",
+    "mount-theme": "pnpm link ./src/theme",
     "serve": "vite preview",
     "noEmit": "vue-tsc --noEmit",
     "lint:js": "eslint --ext \".js,.ts\" --ignore-path .gitignore . --fix",
@@ -80,6 +81,7 @@
     "@vue/compiler-sfc": "^3.2.23",
     "compression": "^1.7.4",
     "cross-env": "^7.0.3",
+    "cssnano": "^5.0.13",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-loader": "^4.0.2",

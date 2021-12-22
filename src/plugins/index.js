@@ -229,4 +229,4 @@ function VitePluginMarkdown(userOptions = {}) {
 }
 const srcDefault = VitePluginMarkdown;
 
-exports.default = srcDefault;
+module.exports = srcDefault;

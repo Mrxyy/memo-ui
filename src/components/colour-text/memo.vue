@@ -16,8 +16,7 @@
 <script lang="ts" setup>
 // import { withDefaults, defineProps } from "vue";
 // https://github.com/vuejs/rfcs/pull/227
-import colors from "tailwindcss/colors";
-import moBadge from "../badge/index.vue";
+import { colors, theme } from "theme";
 
 interface Props{
   text?: string
@@ -27,7 +26,7 @@ interface Props{
 }
 withDefaults(defineProps<Props>(), {
   text: "memo",
-  bg: colors.emerald[500],
+  bg: theme.primary,
   color: colors.amber[400],
   shadow: colors.orange[200]
 });

@@ -4,6 +4,8 @@
 
 @tailwind utilities;
 
+@import './veriables.scss';
+
 @import './darkmark.scss';
 
 // @import 'github-markdown.css';
@@ -62,13 +64,12 @@
   min-width: 5px;
   min-height: 5px;
   -webkit-border-radius: 20px;
-  background-color: theme('colors.info');
+  background-color: theme('colors.primary');
 }
 
 // 按住滑动
 
 ::-webkit-scrollbar-thumb:active {
   -webkit-border-radius: 20px;
-  background-color: theme('colors.info');
+  background-color: theme('colors.primary');
 }
-

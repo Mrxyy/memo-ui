@@ -28,7 +28,7 @@
       <div
         class="grid grid-cols-5 main-container pb-4"
       >
-        <div :class="`col-span-${isShowNavbar?4:5}`">
+        <div :class="`${isShowNavbar?'col-span-4':'col-span-5'}`">
           <router-view />
         </div>
         <div

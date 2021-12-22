@@ -18,5 +18,5 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue"
-  ]
+, "src/theme/default.ts"  ]
 }

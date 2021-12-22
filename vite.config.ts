@@ -8,7 +8,14 @@ const path = require("path");
 // https://vitejs.dev/config/
 
 export default defineConfig(() => {
+  const isLibraryMode = process.env.target === "library";
   const config = {
+    optimizeDeps: {
+      include: ["theme"] //! vite bug:由于tailwindcss 走的node 所以这个文件需要 commoonjs，但是浏览器中只能使用es module，所以需要vite构建。
+    },
+    server: {
+      // force: true
+    },
     plugins: [
       vue({
         include: [/\.vue$/, /\.md$/, /mk.*/]
@@ -26,11 +33,12 @@ export default defineConfig(() => {
       alias: {
         // 解决方案,vite 虚拟文件不能解析相对路径
         "@components": "/src/components"
-      }
+      },
+      preserveSymlinks: isLibraryMode
     }
   };
-  console.log(process.env.target + "4444", "library");
-  if (process.env.target === "library") {
+  console.log(process.env.target, "library");
+  if (isLibraryMode) {
     const libaryConfig = {
       build: {
         lib: { entry: "./src/index.ts", name: "memo", formats: ["es", "umd"] },
@@ -43,7 +51,8 @@ export default defineConfig(() => {
               vue: "Vue"
             }
           }
-        }
+        },
+        minify: true
       },
       publicDir: ""
     };
