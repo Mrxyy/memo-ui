@@ -1,5 +1,5 @@
 # README
-+ view：[https://www.yangx.cloud#/memo-ui](https://www.yangx.cloud#/memo-ui)
++ view：[memo-ui](http://103.61.39.94:3000/)
 ## 用法
 ```typescript
 import { createApp } from 'vue';
