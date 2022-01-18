@@ -1,5 +1,5 @@
 # README
-+ view：[https://www.yangx.cloud#/memo-ui](https://www.yangx.cloud#/memo-ui)
++ view：[memo-ui](http://103.61.39.94:3000/)
 ## 用法
 ```typescript
 import { createApp } from 'vue';
@@ -15,7 +15,7 @@ app.mount('#app');
 > memo-ui的样式是基于tailwindcss构建，是在继承tailwindcss基础组件、工具类、base标签之上进行了一些样式组件扩展。所以在使用memo-ui构建网站的时候你可以使用他们。
 ## 下一步计划
 + 给菜单组添加，envt事件 feat: 能够自定义添加任何事件（direction->el->bind(event)）
-+ 可以分离document 和 libary
++ ~~可以分离document 和 libary~~
 ## reference
 
 + NPM: [NPM](https://www.npmjs.com/package/memo-ui)
