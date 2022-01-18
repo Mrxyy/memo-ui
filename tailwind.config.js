@@ -4,7 +4,9 @@ module.exports = {
   purge: {
     enabled: true,
     content: ["**/*"],
-    safelist: Object.keys(theme).map((v) => new RegExp(`${v}$`, "g"))
+    safelist: Object.keys(theme).map((v) => new RegExp(`${v}$`, "g")).concat([
+      "hover:ring-white"
+    ])
   },
   variants: {
     accessibility: ["responsive", "focus-within", "focus", "important"],
