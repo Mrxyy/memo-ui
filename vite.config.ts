@@ -21,7 +21,7 @@ export default defineConfig(() => {
         include: [/\.vue$/, /\.md$/, /mk.*/]
       }),
       Markdown({
-        headEnabled: true // <--
+        headEnabled: true
       }),
       vueJsx({}),
       eslint({

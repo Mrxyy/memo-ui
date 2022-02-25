@@ -126,16 +126,15 @@ const app = createApp({
       const input = ref<string>('');
       toastsData.kind = "prompt";
       toastsData.isAlways = true;
-      const Test = defineComponent(function(){
+      const Toast = defineComponent(function(){
       const autofocus = resolveDirective('autofocus')
         return  ()=>withDirectives(h(moInput,{
           onChange:({target = {value:''}})=>{input.value = target?.value}
         }), [
           [autofocus as Directive]
         ])
-      })
-      toastsData.detail = <Test/>
-      console.log(toastsData.detail,app,App);
+      });
+      toastsData.detail = <Toast/>
       const onConfirmFx = toastsData.onConfirm;
       toastsData.onConfirm = ()=>{
         return onConfirmFx ? onConfirmFx(input.value) : true;
