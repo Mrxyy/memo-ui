@@ -1,4 +1,5 @@
-import { defineComponent, createApp, h, getCurrentInstance ,Teleport,ref} from "vue";
+import { defineComponent, createApp, h, getCurrentInstance ,Teleport,ref,resolveDirective,withDirectives, Directive} from "vue";
+import { autoFocus } from "../../utils/direactives/autoFocus";
 import moToasts from "./index.vue"
 import moButton from "../buttons/index.vue";
 import moInput from "../form/input.vue"
@@ -45,6 +46,7 @@ class ToastsData {
 }
 
 //! https://github.com/vuejs/jsx-next/blob/dev/packages/babel-plugin-jsx/README-zh_CN.md#%E6%8F%92%E6%A7%BD jsx中使用有名插槽
+
 const app = createApp({
   data():DataType{
     return {
@@ -124,7 +126,16 @@ const app = createApp({
       const input = ref<string>('');
       toastsData.kind = "prompt";
       toastsData.isAlways = true;
-      toastsData.detail = <moInput onChange={({target = {value:''}})=>{input.value = target?.value}}/>; //fef 绑定细节
+      const Test = defineComponent(function(){
+      const autofocus = resolveDirective('autofocus')
+        return  ()=>withDirectives(h(moInput,{
+          onChange:({target = {value:''}})=>{input.value = target?.value}
+        }), [
+          [autofocus as Directive]
+        ])
+      })
+      toastsData.detail = <Test/>
+      console.log(toastsData.detail,app,App);
       const onConfirmFx = toastsData.onConfirm;
       toastsData.onConfirm = ()=>{
         return onConfirmFx ? onConfirmFx(input.value) : true;
@@ -171,6 +182,8 @@ const app = createApp({
       </Teleport>
     </template>);
   }
-}).mount("#toastsRoot");
+})
+app.directive("autofocus",autoFocus);
+const App =  app.mount("#toastsRoot");
 
-export default app;
+export default App;
