@@ -7,8 +7,6 @@ import { nextTick } from "vue";
 export const autoFocus = {
   mounted(el: Element) {
     // see below for details on arguments
-    console.dir(el);
-    console.dir(111);
 
     nextTick(() => {
       el.getElementsByTagName("input")[0].focus();
