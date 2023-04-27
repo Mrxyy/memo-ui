@@ -1,5 +1,5 @@
 # README
-+ view：[memo-ui](http://103.61.39.94:3000/)
++ view：[memo-ui](https://mk-editor.glitch.me/)
 ## 用法
 ```typescript
 import { createApp } from 'vue';
@@ -16,6 +16,8 @@ app.mount('#app');
 ## 下一步计划
 + 给菜单组添加，envt事件 feat: 能够自定义添加任何事件（direction->el->bind(event)）
 + ~~可以分离document 和 libary~~
++ 快速接入新组建和文档脚本
+
 ## reference
 
 + NPM: [NPM](https://www.npmjs.com/package/memo-ui)
