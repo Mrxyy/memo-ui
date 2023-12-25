@@ -45,7 +45,7 @@ import codeEditor from "./components/code-editor/index.vue";
 
 VMdEditor.Codemirror = Codemirror;
 VMdEditor.use(githubTheme, {
-  Hljs: hljs
+  Hljs: hljs,
 });
 
 const app = createApp(App);
